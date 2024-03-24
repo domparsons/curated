@@ -27,7 +27,7 @@ struct UpgradeAccountView: View {
                     VStack {
                         HStack {
                             VStack(alignment: .leading) {
-                                Text("Lifetime access")
+                                Text("Lifetime access!")
                                     .font(.title.bold())
                                     .padding(.bottom, 5)
                                 
