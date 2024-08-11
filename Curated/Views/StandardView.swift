@@ -57,7 +57,9 @@ struct StandardView: View {
                         if selectedPhotos.contains(photo), let index = selectedPhotos.firstIndex(of: photo) {
                             selectedPhotos.remove(at: index)
                         } else {
-                            selectedPhotos.append(photo)
+                            withAnimation {
+                                selectedPhotos.append(photo)
+                            }
                         }
                     }
                 }

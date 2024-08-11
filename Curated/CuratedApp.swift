@@ -7,12 +7,9 @@
 
 import SwiftUI
 import SwiftData
-import TipKit
 
 @main
 struct CuratedApp: App {
-    
-    @Environment(\.modelContext) private var context
     
     let photoModelContainer: ModelContainer
     let tagModelContainer: ModelContainer
@@ -22,7 +19,7 @@ struct CuratedApp: App {
             photoModelContainer = try ModelContainer(for: Photo.self)
             tagModelContainer = try ModelContainer(for: Tag.self)
         } catch {
-            fatalError("Could not initialize ModelContainer")
+            fatalError("Could not initialise ModelContainer")
         }
     }
     
@@ -30,11 +27,6 @@ struct CuratedApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(for: [Photo.self, Tag.self])
-                .task {
-                    try? Tips.configure([
-                        .displayFrequency(.immediate),
-                        .datastoreLocation(.applicationDefault)])
-                }
         }
     }
 }

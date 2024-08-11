@@ -44,6 +44,7 @@
 		EC4EC1DB2B6FF5B5008AE261 /* Tip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tip.swift; sourceTree = "<group>"; };
 		EC6B7C982B52CBC000944AD1 /* AddTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagsView.swift; sourceTree = "<group>"; };
 		EC700B962B70C9E300F711B4 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		EC7BA7042BBF680F0059B404 /* Curated.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Curated.entitlements; sourceTree = "<group>"; };
 		EC83DD482B947C6F00DA88E2 /* MainConfiguration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; name = MainConfiguration.storekit; path = Views/MainConfiguration.storekit; sourceTree = "<group>"; };
 		ECA7D9972B518BAD000BF6C3 /* SinglePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePhotoView.swift; sourceTree = "<group>"; };
 		ECA7D9992B518BE4000BF6C3 /* PhotoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailView.swift; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		EC2051FA2B29BC7000C8B5A5 /* Curated */ = {
 			isa = PBXGroup;
 			children = (
+				EC7BA7042BBF680F0059B404 /* Curated.entitlements */,
 				EC83DD482B947C6F00DA88E2 /* MainConfiguration.storekit */,
 				EC0AE4732B5424C60025DF3A /* Info.plist */,
 				EC0AE4722B5424A80025DF3A /* CuratedDebug.entitlements */,
@@ -391,6 +393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Curated/Curated.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Curated/Preview Content\"";

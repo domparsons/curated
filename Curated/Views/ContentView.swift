@@ -20,11 +20,8 @@ struct ContentView: View {
     
     @State private var searchText = ""
     @State private var searchIsActive = false
-    @State private var isShareSheetPresented = false
-    @State private var imagesToBeShared: [UIImage] = []
-    @State private var arrangement = UserDefaults.standard.string(forKey: "photoDisplayView")
-    @State private var showingDeleteConfirmation = false
     
+    @State private var arrangement = UserDefaults.standard.string(forKey: "photoDisplayView")
     @State private var engine: CHHapticEngine?
     
     @State var selectedTags: [Tag] = []
@@ -33,12 +30,12 @@ struct ContentView: View {
     @State var selectedForImport: [PhotosPickerItem] = []
     @State var selectionModeEnabled: Bool = false
     @State var selectedPhotos: [Photo] = []
-    
-    
-    
+    @State var showingDeleteConfirmation = false
     @State var showingUpgradeView = false
+    @State var imagesToBeShared: [UIImage] = []
+    @State var isShareSheetPresented = false
     
-    var maximumFreePhotos: Int = 10
+    var maximumFreePhotos: Int = 100
     
     var searchResults: [Photo] {
         if searchText.isEmpty {
@@ -103,23 +100,6 @@ struct ContentView: View {
                                     Image(systemName: arrangement == "grid" ? "square.grid.2x2" : "rectangle.grid.1x2")
                                 }
                             }
-                        } else {
-                            ToolbarItem {
-                                Button {
-                                    showingDeleteConfirmation = true
-                                } label: {
-                                    Image(systemName: "trash")
-                                }
-                                .disabled(selectedPhotos == [])
-                            }
-                            ToolbarItem {
-                                Button {
-                                    shareSelectedPhotos()
-                                } label: {
-                                    Image(systemName: "square.and.arrow.up")
-                                }
-                                .disabled(selectedPhotos == [])
-                            }
                         }
                         ToolbarItem {
                             Button {
@@ -136,7 +116,7 @@ struct ContentView: View {
                     }
                 }
                 if selectionModeEnabled {
-                    SelectionOverlayView(selectedPhotos: $selectedPhotos)
+                    SelectionOverlayView(selectedPhotos: $selectedPhotos, showingDeleteConfirmation: $showingDeleteConfirmation, imagesToBeShared: $imagesToBeShared, isShareSheetPresented: $isShareSheetPresented, showingTagsSheet: $showingTagsSheet)
                 }
             }
             .onAppear {
@@ -189,22 +169,6 @@ struct ContentView: View {
             UserDefaults.standard.setValue("grid", forKey: "photoDisplayView")
             arrangement = "grid"
         }
-    }
-    
-    func shareSelectedPhotos() {
-        imagesToBeShared.removeAll()
-        
-        for photo in selectedPhotos {
-            let photoData = photo.photoData!
-            if let imageToBeShared = UIImage(data: photoData) {
-                imagesToBeShared.append(imageToBeShared)
-            }
-        }
-        showShareSheet()
-    }
-    
-    func showShareSheet() {
-        isShareSheetPresented = true
     }
 
     func deleteSelectedPhotos() {
